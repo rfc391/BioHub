@@ -1,5 +1,5 @@
 
-# Professional Biostasis System
+# Bio Hub
 
 ## Overview
 This project integrates advanced Biostasis Technology with professional-grade features, including simulation, monitoring, and reporting.
