@@ -1,85 +1,64 @@
 
-# BioHub Platform
+# BioHub
 
-The **BioHub Platform** is a Python-based application designed to provide robust, secure, and scalable features for managing biosafety, outbreak prediction, and user data. Built on Flask, it integrates MongoDB for data storage, Redis for caching, and leverages advanced AI/ML for analytics.
+BioHub is a comprehensive platform designed to manage and monitor biological data efficiently. This project includes backend APIs, a frontend interface, and mobile compatibility.
 
 ## Features
+- **Backend**: Flask-powered API to handle data operations.
+- **Frontend**: React-based interface for user interaction.
+- **Mobile**: Cross-platform support for accessibility.
+- **Cloudflare Integration**: Enhanced performance and security for static and API endpoints.
 
-- **User Management**:
-  - Register and log in with secure password hashing.
-  - Role-based access control (RBAC) for admin and researcher roles.
-  - Password reset functionality via email tokens.
+## Setup Instructions
 
-- **Outbreak Prediction**:
-  - AI/ML integration for risk assessment based on input features.
+### Prerequisites
+- Python 3.8+
+- Docker & Docker Compose
+- Node.js for frontend
 
-- **Secure Data Access**:
-  - Role-protected endpoints with granular control.
-
-- **Performance Enhancements**:
-  - Rate limiting to prevent API misuse.
-  - Redis caching for fast access to frequently used data.
-
-## Installation
+### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/biohub.git
-   cd biohub
+   git clone <repository-url>
    ```
 
-2. Install dependencies:
+2. Install backend dependencies:
    ```bash
+   cd backend
    pip install -r requirements.txt
    ```
 
-3. Run the application:
+3. Run the Flask backend:
    ```bash
    python biohub.py
    ```
 
-## Deployment
-
-### Using Docker
-
-1. Build the Docker image:
+4. Build and run the frontend:
    ```bash
-   docker build -t biohub:latest .
+   cd frontend
+   npm install
+   npm start
    ```
 
-2. Run the Docker container:
+5. Use Docker Compose for deployment (optional):
    ```bash
-   docker run -p 5000:5000 biohub:latest
+   docker-compose up --build
    ```
+
+### Cloudflare Integration
+- Ensure your domain is linked to Cloudflare for DNS management.
+- Enable caching, SSL/TLS, and firewall rules through the Cloudflare dashboard.
 
 ## Testing
-
-Run tests using Pytest:
+Run the test suite using:
 ```bash
-pytest test_biohub.py
+python test_biohub.py
 ```
 
-## API Endpoints
-
-- **`/api/register`** - Register a new user.
-- **`/api/login`** - Log in and receive role information.
-- **`/api/reset-password-request`** - Request a password reset token.
-- **`/api/reset-password/<token>`** - Reset the password using the token.
-- **`/api/secure-data`** - Access admin-only secure data.
-- **`/api/outbreak-prediction`** - AI-driven outbreak prediction.
-
-## Technologies Used
-
-- Flask
-- MongoDB (via Flask-MongoEngine)
-- Redis
-- Pytest
-
-## License
-
-This project is licensed under the MIT License.
+## Deployment
+- Utilize the provided `ci-cd-pipeline.yml` for automated deployment workflows.
+- Monitor live services using `monitoring-deployment.yaml`.
 
 ---
-
-**Developed By:** Your Name  
-**Contact:** your-email@example.com
+**Contributors**: Feel free to contribute by submitting issues and pull requests.
