@@ -9,6 +9,7 @@ services:
     environment:
       MONGO_URI: mongodb://mongo:27017/biohub
       NODE_ENV: production
+      FEATURE_FLAGS: biosafety,biostasis,iot_monitoring,outbreaks,incidents
     depends_on:
       - mongo
 
@@ -17,6 +18,8 @@ services:
       context: ./frontend
     ports:
       - "3000:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:5000
 
   mongo:
     image: mongo:latest
