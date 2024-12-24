@@ -16,7 +16,8 @@ def test_register_login(client):
     # Register user
     response = client.post('/api/register', json={
         'username': 'testuser',
-        'password': 'testpass'
+        'password': 'testpass',
+        'email': 'testuser@example.com'
     })
     assert response.status_code == 201
 
