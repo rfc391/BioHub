@@ -1,0 +1,95 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biohub-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: biohub-backend
+  template:
+    metadata:
+      labels:
+        app: biohub-backend
+    spec:
+      containers:
+      - name: biohub-backend
+        image: robs391/biohub:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://biohub-mongo:27017/biohub"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: biohub-backend
+spec:
+  selector:
+    app: biohub-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biohub-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: biohub-frontend
+  template:
+    metadata:
+      labels:
+        app: biohub-frontend
+    spec:
+      containers:
+      - name: biohub-frontend
+        image: robs391/biohub-frontend:latest
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: biohub-frontend
+spec:
+  selector:
+    app: biohub-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biohub-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: biohub-mongo
+  template:
+    metadata:
+      labels:
+        app: biohub-mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:latest
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongo-data
+      volumes:
+      - name: mongo-data
+        emptyDir: {}
