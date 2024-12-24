@@ -1,0 +1,17 @@
+
+name: Create Repository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create repository
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /user/repos
+          repository: new-repo-name
+          description: 'This is your new repository'
+          headers: '{"Authorization": "token ${{ secrets.GITHUB_TOKEN }}"}'
