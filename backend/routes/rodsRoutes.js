@@ -8,3 +8,6 @@ router.get('/trends', getOutbreakTrends);
 router.post('/alert', triggerAlert);
 
 module.exports = router;
+
+
+router.get('/historical', getHistoricalData);
