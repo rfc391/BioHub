@@ -4,28 +4,39 @@ const multer = require('multer');
 const cors = require('cors');
 const { convert } = require('@microsoft/markitdown');
 
+// Initialize app and middleware
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Middleware
+// Global middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// File conversion endpoint
 app.post('/convert', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
+      return res.status(400).json({ 
+        success: false,
+        error: 'No file uploaded' 
+      });
     }
 
     const result = await convert(req.file.buffer);
-    res.json({ markdown: result });
+    res.json({ 
+      success: true,
+      markdown: result 
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ 
+      success: false,
+      error: error.message 
+    });
   }
 });
 
+// Server configuration
 const PORT = 3000;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running at http://0.0.0.0:${PORT}`);
 });

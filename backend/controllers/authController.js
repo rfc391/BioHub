@@ -2,15 +2,18 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const SALT_ROUNDS = 10;
+
 const login = async (req, res) => {
     const { email, password, totpCode } = req.body;
     
-    // Multi-factor authentication check
     if (!totpCode) {
-        return res.status(400).json({ message: 'TOTP code required' });
+        return res.status(400).json({ 
+            success: false,
+            message: 'TOTP code required' 
+        });
     }
 
-    // Simulate user verification
     const user = {
         id: 1,
         email,
@@ -18,9 +21,12 @@ const login = async (req, res) => {
         permissions: ['read', 'write', 'admin']
     };
 
-    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(user, process.env.JWT_SECRET, { 
+        expiresIn: '1h' 
+    });
     
     res.status(200).json({ 
+        success: true,
         message: 'Login successful',
         token,
         user: {
@@ -34,10 +40,8 @@ const login = async (req, res) => {
 const register = async (req, res) => {
     const { email, password, role } = req.body;
     
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     
-    // Simulate user creation
     const user = {
         id: Date.now(),
         email,
@@ -46,6 +50,7 @@ const register = async (req, res) => {
     };
     
     res.status(201).json({ 
+        success: true,
         message: 'User registered successfully',
         user: {
             email: user.email,
@@ -59,9 +64,16 @@ const verifyToken = (req, res) => {
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        res.json({ valid: true, user: decoded });
+        res.json({ 
+            success: true,
+            valid: true, 
+            user: decoded 
+        });
     } catch (error) {
-        res.json({ valid: false });
+        res.json({ 
+            success: false,
+            valid: false 
+        });
     }
 };
 
