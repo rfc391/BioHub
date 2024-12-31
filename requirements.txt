@@ -7,3 +7,17 @@ numpy==1.26.2
 flask
 python-dotenv
 requests
+flask
+jupyter
+numpy
+pytest
+python-dotenv
+pyyaml
+requests
+flask
+jupyter
+numpy
+pytest
+python-dotenv
+pyyaml
+requests
