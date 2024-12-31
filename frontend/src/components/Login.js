@@ -1,9 +1,20 @@
 
 import React, { useState } from 'react';
 
+import { 
+    Box, 
+    Card, 
+    CardContent, 
+    TextField, 
+    Button, 
+    Typography,
+    Container 
+} from '@mui/material';
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleLogin = () => {
         // Login logic here

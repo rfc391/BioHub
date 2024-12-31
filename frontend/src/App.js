@@ -2,9 +2,24 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
+import { ThemeProvider, createTheme } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2196f3',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+});
+
 function App() {
-  const [markdown, setMarkdown] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(true);
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setLoading(true);
