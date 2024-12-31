@@ -1,0 +1,46 @@
+
+name: Test and Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install Dependencies
+        run: |
+          npm install
+          cd frontend && npm install
+          cd ../backend && npm install
+      
+      - name: Run Tests
+        run: |
+          cd backend && npm test
+          cd ../frontend && npm test
+        
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install -g eslint
+          
+      - name: Run Lint
+        run: eslint .
