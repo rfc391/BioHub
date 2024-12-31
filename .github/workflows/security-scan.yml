@@ -26,3 +26,19 @@ jobs:
           project: 'BioHub'
           path: '.'
           format: 'HTML'
+          
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload security scan results
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-scan-results
+          path: |
+            dependency-check-report.html
+            trivy-results.txt

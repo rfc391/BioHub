@@ -16,17 +16,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
       
       - name: Install Dependencies
         run: |
-          npm install
-          cd frontend && npm install
-          cd ../backend && npm install
+          npm ci
+          cd frontend && npm ci
+          cd ../backend && npm ci
       
       - name: Run Tests
         run: |
-          cd backend && npm test
-          cd ../frontend && npm test
+          cd backend && npm test -- --coverage
+          cd ../frontend && npm test -- --watchAll=false
         
   lint:
     runs-on: ubuntu-latest
@@ -36,11 +37,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
           
       - name: Install Dependencies
-        run: |
-          npm install
-          npm install -g eslint
+        run: npm ci
           
       - name: Run Lint
-        run: eslint .
+        run: |
+          npx eslint .
+          npx prettier --check .
