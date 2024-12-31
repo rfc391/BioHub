@@ -21,3 +21,4 @@ pytest
 python-dotenv
 pyyaml
 requests
+psutil
