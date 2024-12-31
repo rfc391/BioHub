@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Card, Grid, Typography } from '@material-ui/core';
+import { Grid, Card, Typography } from '@material-ui/core';
+import { Line, Bar } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 const IoTDashboard = () => {
     const [sensorData, setSensorData] = useState({
@@ -15,15 +16,24 @@ const IoTDashboard = () => {
         }]
     });
 
+    const [outbreakData, setOutbreakData] = useState({
+        labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D'],
+        datasets: [{
+            label: 'Incident Count',
+            data: [12, 19, 3, 5],
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }]
+    });
+
     useEffect(() => {
-        const ws = new WebSocket('wss://your-replit-url/ws');
+        const ws = new WebSocket('wss://0.0.0.0:3000/ws');
         ws.onmessage = (event) => {
             const newData = JSON.parse(event.data);
             setSensorData(prev => ({
-                labels: [...prev.labels, new Date().toLocaleTimeString()],
+                labels: [...prev.labels, new Date().toLocaleTimeString()].slice(-20),
                 datasets: [{
                     ...prev.datasets[0],
-                    data: [...prev.datasets[0].data, newData.value]
+                    data: [...prev.datasets[0].data, newData.value].slice(-20)
                 }]
             }));
         };
@@ -36,15 +46,15 @@ const IoTDashboard = () => {
                 <Typography variant="h4">IoT Monitoring Dashboard</Typography>
             </Grid>
             <Grid item xs={12} md={6}>
-                <Card>
-                    <Line data={sensorData} />
+                <Card style={{ padding: 20 }}>
+                    <Typography variant="h6">Real-time Sensor Data</Typography>
+                    <Line data={sensorData} options={{ responsive: true }} />
                 </Card>
             </Grid>
             <Grid item xs={12} md={6}>
-                <Card>
-                    <Typography variant="h6">Device Status</Typography>
-                    <Typography>Active Devices: 5</Typography>
-                    <Typography>Alert Status: Normal</Typography>
+                <Card style={{ padding: 20 }}>
+                    <Typography variant="h6">Outbreak Distribution</Typography>
+                    <Bar data={outbreakData} options={{ responsive: true }} />
                 </Card>
             </Grid>
         </Grid>
