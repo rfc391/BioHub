@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import NetInfo from '@react-native-community/netinfo';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/HomeScreen';
 import { MonitorScreen } from './screens/MonitorScreen';
@@ -10,12 +8,18 @@ import { IncidentsScreen } from './screens/IncidentsScreen';
 
 const Stack = createStackNavigator();
 
+const SCREENS = [
+  { name: 'Home', component: HomeScreen },
+  { name: 'Monitor', component: MonitorScreen },
+  { name: 'Incidents', component: IncidentsScreen }
+];
+
 const App = () => (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Monitor" component={MonitorScreen} />
-      <Stack.Screen name="Incidents" component={IncidentsScreen} />
+      {SCREENS.map(({ name, component }) => (
+        <Stack.Screen key={name} name={name} component={component} />
+      ))}
     </Stack.Navigator>
   </NavigationContainer>
 );

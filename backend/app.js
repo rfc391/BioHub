@@ -7,20 +7,37 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// Database connection
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
 
-// Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/biosafety', require('./routes/biosafetyRoutes'));
-app.use('/api/biostasis', require('./routes/biostasisRoutes'));
-app.use('/api/iot', require('./routes/iotRoutes'));
+connectDB();
+
+// API Routes
+const routes = {
+  auth: require('./routes/authRoutes'),
+  biosafety: require('./routes/biosafetyRoutes'),
+  biostasis: require('./routes/biostasisRoutes'),
+  iot: require('./routes/iotRoutes')
+};
+
+Object.entries(routes).forEach(([path, router]) => {
+  app.use(`/api/${path}`, router);
+});
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
