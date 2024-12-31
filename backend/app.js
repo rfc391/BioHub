@@ -1,18 +1,28 @@
 
 const express = require('express');
-const helmet = require('helmet');
-const bodyParser = require('body-parser');
+const multer = require('multer');
 const cors = require('cors');
-const biostasisRoutes = require('./routes/biostasisRoutes');
+const { convert } = require('@microsoft/markitdown');
+
 const app = express();
+const upload = multer({ storage: multer.memoryStorage() });
 
-app.use(helmet());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.use('/api/biostasis', biostasisRoutes);
+app.post('/convert', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    const result = await convert(req.file.buffer);
+    res.json({ markdown: result });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-module.exports = app;
+app.listen(3000, '0.0.0.0', () => {
+  console.log('Server running on port 3000');
+});
