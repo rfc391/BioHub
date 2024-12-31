@@ -1,42 +1,29 @@
 
 const express = require('express');
-const multer = require('multer');
 const cors = require('cors');
-const { convert } = require('@microsoft/markitdown');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-// Initialize app and middleware
 const app = express();
-const upload = multer({ storage: multer.memoryStorage() });
+const port = process.env.PORT || 5000;
 
-// Global middleware
 app.use(cors());
 app.use(express.json());
 
-// File conversion endpoint
-app.post('/convert', upload.single('file'), async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ 
-        success: false,
-        error: 'No file uploaded' 
-      });
-    }
-
-    const result = await convert(req.file.buffer);
-    res.json({ 
-      success: true,
-      markdown: result 
-    });
-  } catch (error) {
-    res.status(500).json({ 
-      success: false,
-      error: error.message 
-    });
-  }
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
-// Server configuration
-const PORT = 3000;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running at http://0.0.0.0:${PORT}`);
+// Routes
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/biosafety', require('./routes/biosafetyRoutes'));
+app.use('/api/biostasis', require('./routes/biostasisRoutes'));
+app.use('/api/iot', require('./routes/iotRoutes'));
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
 });
+
+module.exports = app;

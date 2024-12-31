@@ -1,10 +1,15 @@
 
-from module1 import submodule1
-from module2 import utils
+from flask import Flask, jsonify
+from dotenv import load_dotenv
+import os
 
-def main():
-    """Main entry point of the application."""
-    print("Application started")
+app = Flask(__name__)
+load_dotenv()
 
-if __name__ == "__main__":
-    main()
+@app.route('/api/status')
+def get_status():
+    return jsonify({"status": "operational"})
+
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 3000))
+    app.run(host='0.0.0.0', port=port)
