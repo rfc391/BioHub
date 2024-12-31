@@ -58,3 +58,19 @@ const generateWeeklySummary = async (req, res) => {
 };
 
 module.exports = { generateReport, generateWeeklySummary };
+const PDFDocument = require('pdfkit');
+
+const generateBiostasisReport = async (req, res) => {
+  const doc = new PDFDocument();
+  const stream = res.writeHead(200, {
+    'Content-Type': 'application/pdf',
+    'Content-Disposition': 'attachment;filename=biostasis-report.pdf'
+  });
+
+  doc.pipe(stream);
+  doc.fontSize(25).text('Biostasis Simulation Report', 100, 100);
+  doc.fontSize(12).text(`Generated: ${new Date().toISOString()}`, 100, 150);
+  doc.end();
+};
+
+module.exports = { generateBiostasisReport };
