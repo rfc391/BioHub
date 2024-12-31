@@ -21,5 +21,8 @@ app.register_blueprint(incidents_bp, url_prefix='/incidents')
 
 app.url_map.strict_slashes = False  # Disable strict slashes globally
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    debug_mode = os.getenv('FLASK_DEBUG', 'false').lower() == 'true'
+    app.run(debug=debug_mode)
