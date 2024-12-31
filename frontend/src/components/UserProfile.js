@@ -9,10 +9,28 @@ const UserProfile = () => {
         role: ''
     });
 
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const response = await fetch('/api/users/profile', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setProfile(data);
+            }
+        };
+        fetchProfile();
+    }, []);
+
     const handleUpdate = async () => {
         const response = await fetch('/api/users/profile', {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
             body: JSON.stringify(profile)
         });
         if (response.ok) {
