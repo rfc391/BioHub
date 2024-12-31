@@ -2,44 +2,47 @@
 # BioHub Platform
 
 ## Overview
-BioHub is a comprehensive biostasis management platform built on Replit that integrates IoT monitoring, incident tracking, and advanced analytics capabilities.
+BioHub is a comprehensive biostasis management platform with IoT monitoring, incident tracking, and advanced analytics capabilities.
 
-## Core Features
-- **IoT Dashboard**
+## Features
+
+### Core Features
+- **IoT Integration**
   - Real-time sensor monitoring
-  - Device management
-  - Alert configuration
-  - Performance metrics
+  - Device management dashboard
+  - Custom alert thresholds
+  - Performance analytics
 
 - **Biosurveillance**
-  - Outbreak tracking
-  - Incident reporting
+  - Real-time outbreak tracking
+  - Incident reporting system
   - Compliance monitoring
-  - Real-time alerts
+  - Automated alerts
 
-- **User Management**
-  - Role-based access control
-  - Profile management
-  - Secure authentication
-  - Activity logging
-
-- **Mobile Integration**
-  - Real-time monitoring
-  - Push notifications
-  - Incident reporting
-  - Field data collection
-
-- **Analytics & Reporting**
-  - Interactive dashboards
-  - PDF report generation
-  - Data visualization
+- **Analytics Dashboard**
+  - Interactive data visualization
+  - Custom report generation
+  - Real-time metrics
   - Export capabilities
 
-- **Geospatial Features**
+- **Mobile App**
+  - Real-time monitoring
+  - Push notifications
+  - Field incident reporting
+  - Offline data sync
+
+### Advanced Features
+- **Geospatial Analysis**
   - Interactive mapping
   - Location-based alerts
   - Outbreak visualization
-  - Geographic analysis
+  - Geographic heatmaps
+
+- **User Management**
+  - Role-based access
+  - Activity logging
+  - Secure authentication
+  - Profile customization
 
 ## Quick Start
 
@@ -60,47 +63,42 @@ cd frontend
 npm start
 ```
 
-4. Access the platform at: http://0.0.0.0:3000
+Access the platform at: http://0.0.0.0:3000
 
 ## Project Structure
 ```
-├── backend/         # Express.js backend
-├── frontend/        # React frontend
-├── mobile/         # React Native mobile app
-├── docs/           # Documentation
-└── tests/          # Test suites
+├── backend/          # Express.js backend
+├── frontend/         # React frontend
+├── mobile/          # React Native mobile app
+├── docs/            # Documentation
+└── tests/           # Test suites
 ```
 
 ## Testing
 Run backend tests:
 ```bash
-cd backend
-npm test
+cd backend && npm test
 ```
 
 Run frontend tests:
 ```bash
-cd frontend
-npm test
+cd frontend && npm test
 ```
 
-Run Cypress E2E tests:
+Run E2E tests:
 ```bash
-cd frontend
-npm run cypress
+cd frontend && npm run cypress
 ```
-
-## API Documentation
-See `API_DOCUMENTATION.md` for detailed endpoint specifications.
 
 ## Security
-- JWT-based authentication
-- Role-based access control
+- JWT authentication
+- Role-based access
 - Input validation
 - XSS protection
 - Rate limiting
 
-Report security issues according to `SECURITY.md` guidelines.
+## API Documentation
+See `API_DOCUMENTATION.md` for endpoint details
 
 ## Contributing
 1. Fork the project
@@ -108,4 +106,4 @@ Report security issues according to `SECURITY.md` guidelines.
 3. Submit a pull request
 
 ## License
-MIT License - see LICENSE file for details
+MIT License - see LICENSE file
