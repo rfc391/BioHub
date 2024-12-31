@@ -7,9 +7,11 @@ const { convert } = require('@microsoft/markitdown');
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Routes
 app.post('/convert', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
@@ -23,6 +25,7 @@ app.post('/convert', upload.single('file'), async (req, res) => {
   }
 });
 
-app.listen(3000, '0.0.0.0', () => {
-  console.log('Server running on port 3000');
+const PORT = 3000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
