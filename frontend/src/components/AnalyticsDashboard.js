@@ -1,14 +1,16 @@
 
 import React from 'react';
-import { Grid, Card, Typography, Box } from '@material-ui/core';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { Box, Typography, Grid, Card } from '@mui/material';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 const AnalyticsDashboard = () => {
   const mockData = [
-    { date: '2023-01', incidents: 4, compliance: 95 },
-    { date: '2023-02', incidents: 3, compliance: 97 },
-    { date: '2023-03', incidents: 5, compliance: 94 },
-    { date: '2023-04', incidents: 2, compliance: 98 }
+    { date: '2023-01', incidents: 4, compliance: 95, predicted: 3 },
+    { date: '2023-02', incidents: 3, compliance: 97, predicted: 4 },
+    { date: '2023-03', incidents: 5, compliance: 94, predicted: 4 },
+    { date: '2023-04', incidents: 2, compliance: 98, predicted: 3 },
+    { date: '2023-05', predicted: 2 },
+    { date: '2023-06', predicted: 3 }
   ];
 
   return (
@@ -18,14 +20,15 @@ const AnalyticsDashboard = () => {
         <Grid item xs={12} md={6}>
           <Card>
             <Box sx={{ p: 2 }}>
-              <Typography variant="h6">Incident Trends</Typography>
+              <Typography variant="h6">Incident Trends & Predictions</Typography>
               <LineChart width={500} height={300} data={mockData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="incidents" stroke="#8884d8" />
+                <Line type="monotone" dataKey="incidents" stroke="#8884d8" name="Actual Incidents" />
+                <Line type="monotone" dataKey="predicted" stroke="#82ca9d" strokeDasharray="5 5" name="Predicted Incidents" />
               </LineChart>
             </Box>
           </Card>
