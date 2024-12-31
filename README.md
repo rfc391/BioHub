@@ -2,82 +2,105 @@
 # BioHub Platform
 
 ## Overview
-BioHub is a comprehensive platform for managing biostasis data, incidents, and IoT integration, designed for secure and scalable deployments on Replit.
+BioHub is a comprehensive biostasis management platform built on Replit that integrates IoT monitoring, incident tracking, and advanced analytics capabilities.
 
-## Key Features
-- **Real-time Monitoring**
-  - IoT sensor integration
-  - Live data visualization
-  - Incident tracking
-  - Outbreak monitoring
+## Core Features
+- **IoT Dashboard**
+  - Real-time sensor monitoring
+  - Device management
+  - Alert configuration
+  - Performance metrics
+
+- **Biosurveillance**
+  - Outbreak tracking
+  - Incident reporting
+  - Compliance monitoring
+  - Real-time alerts
 
 - **User Management**
   - Role-based access control
-  - Secure authentication
   - Profile management
+  - Secure authentication
+  - Activity logging
 
 - **Mobile Integration**
   - Real-time monitoring
-  - Incident reporting
   - Push notifications
+  - Incident reporting
+  - Field data collection
 
-- **Advanced Analytics**
+- **Analytics & Reporting**
   - Interactive dashboards
-  - Data visualization
   - PDF report generation
-  - Data export capabilities
+  - Data visualization
+  - Export capabilities
 
 - **Geospatial Features**
-  - Outbreak tracking
-  - Location-based alerts
   - Interactive mapping
-
-## Project Structure
-```
-├── backend/          # Express.js backend
-├── frontend/         # React frontend
-├── mobile/          # Mobile app
-├── docs/            # Documentation
-└── tests/           # Test suites
-```
+  - Location-based alerts
+  - Outbreak visualization
+  - Geographic analysis
 
 ## Quick Start
 
-1. Fork this Repl
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+1. Install dependencies:
+```bash
+npm install
+```
 
-3. Start the backend:
-   ```bash
-   cd backend
-   npm start
-   ```
+2. Start the backend:
+```bash
+cd backend
+npm start
+```
 
-4. Start the frontend:
-   ```bash
-   cd frontend
-   npm start
-   ```
+3. Start the frontend:
+```bash
+cd frontend
+npm start
+```
+
+4. Access the platform at: http://0.0.0.0:3000
+
+## Project Structure
+```
+├── backend/         # Express.js backend
+├── frontend/        # React frontend
+├── mobile/         # React Native mobile app
+├── docs/           # Documentation
+└── tests/          # Test suites
+```
 
 ## Testing
-Run tests using:
+Run backend tests:
 ```bash
+cd backend
 npm test
 ```
 
-For frontend tests:
+Run frontend tests:
+```bash
+cd frontend
+npm test
+```
+
+Run Cypress E2E tests:
 ```bash
 cd frontend
 npm run cypress
 ```
 
 ## API Documentation
-Refer to `API_DOCUMENTATION.md` for detailed API endpoints.
+See `API_DOCUMENTATION.md` for detailed endpoint specifications.
 
 ## Security
-Security vulnerabilities should be reported according to `SECURITY.md`.
+- JWT-based authentication
+- Role-based access control
+- Input validation
+- XSS protection
+- Rate limiting
+
+Report security issues according to `SECURITY.md` guidelines.
 
 ## Contributing
 1. Fork the project
