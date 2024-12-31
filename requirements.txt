@@ -4,3 +4,9 @@ flask-cors==4.0.2
 flask-mongoengine==1.0.0
 flask-limiter==2.6.0
 redis==4.4.4
+pytest
+python-dotenv
+requests
+pytest
+python-dotenv
+requests
