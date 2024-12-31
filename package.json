@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "description": "Frontend for BioHub",
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "start": "node backend/app.js",
+        "dev": "nodemon backend/app.js",
+        "test": "jest --coverage",
+        "lint": "eslint ."
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",

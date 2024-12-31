@@ -1,30 +1,23 @@
 
-const simulateBiostasis = (req, res) => {
-    const { state, duration, temperature } = req.body;
-    // Simulate biostasis logic here
-    res.status(201).json({
-        message: 'Biostasis simulation initiated',
-        data: { state, duration, temperature },
-    });
-};
+const cache = require('memory-cache');
 
-const monitorBiostasis = (req, res) => {
-    // Fetch and return real-time monitoring data
-    res.status(200).json({
-        message: 'Real-time monitoring data',
-        data: { heartRate: 60, temperature: -196 },
-    });
-};
+class BiostasisController {
+  static async getMetrics(req, res) {
+    const cachedMetrics = cache.get('metrics');
+    if (cachedMetrics) {
+      return res.json(cachedMetrics);
+    }
 
-const reportBiostasis = (req, res) => {
-    // Generate and return detailed simulation report
-    res.status(200).json({
-        message: 'Biostasis report generated',
-        report: {
-            successRate: 95,
-            anomalies: 0,
-        },
-    });
-};
+    const metrics = await BiostasisService.getCurrentMetrics();
+    cache.put('metrics', metrics, 5000);
+    res.json(metrics);
+  }
 
-module.exports = { simulateBiostasis, monitorBiostasis, reportBiostasis };
+  static async simulateBiostasis(req, res) {
+    const { temperature, duration } = req.body;
+    const simulation = await BiostasisService.runSimulation(temperature, duration);
+    res.status(201).json(simulation);
+  }
+}
+
+module.exports = BiostasisController;
