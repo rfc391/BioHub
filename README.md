@@ -5,96 +5,64 @@
 BioHub is an advanced biostasis technology platform that integrates real-time biosurveillance, monitoring, and reporting capabilities. The platform provides comprehensive tools for researchers and healthcare professionals to manage biological data and monitor critical parameters.
 
 ## Features
-- Real-time biosurveillance with automated alerts
-- Interactive dashboards with role-based access control
-- IoT sensor integration and geospatial mapping
-- Compliance tracking and reporting
-- Mobile application support
-- Advanced analytics and data visualization
+- Real-time biosurveillance with automated alerts.
+- Interactive dashboards with role-based access control.
+- IoT sensor integration and geospatial mapping.
+- Compliance tracking for health and safety standards.
 
-## Technology Stack
-- Frontend: React.js
-- Backend: Node.js/Express
-- Mobile: React Native
-- Database: SQL (Sequelize ORM)
-- Authentication: JWT
-
-## Getting Started
+## Setup Instructions
 
 ### Prerequisites
-- Node.js 14.x or higher
 - Python 3.8 or higher
-- NPM or Yarn package manager
+- SQLite
+- Flask
 
 ### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/BioHub.git
+   cd BioHub
+   ```
 
-1. Install backend dependencies:
-```bash
-cd backend
-npm install
-```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-2. Install frontend dependencies:
-```bash
-cd frontend
-npm install
-```
+3. Initialize the database:
+   ```bash
+   python
+   >>> from db_utils import get_db_connection
+   >>> conn = get_db_connection()
+   >>> conn.executescript('''
+   CREATE TABLE IF NOT EXISTS biosafety (id INTEGER PRIMARY KEY, record TEXT NOT NULL);
+   CREATE TABLE IF NOT EXISTS biostasis (id INTEGER PRIMARY KEY, record TEXT NOT NULL);
+   CREATE TABLE IF NOT EXISTS iot (id INTEGER PRIMARY KEY, record TEXT NOT NULL);
+   CREATE TABLE IF NOT EXISTS outbreaks (id INTEGER PRIMARY KEY, record TEXT NOT NULL);
+   CREATE TABLE IF NOT EXISTS incidents (id INTEGER PRIMARY KEY, record TEXT NOT NULL);
+   ''')
+   >>> conn.close()
+   ```
 
-3. Install Python dependencies:
-```bash
-pip install -r requirements.txt
-```
+4. Run the application:
+   ```bash
+   python biohub.py
+   ```
 
-### Running the Application
-
-1. Start the backend server:
-```bash
-cd backend
-npm start
-```
-
-2. Start the frontend application:
-```bash
-cd frontend
-npm start
-```
-
-3. Run the Python services:
-```bash
-python src/main.py
-```
-
-## Project Structure
-```
-├── backend/          # Node.js backend services
-├── frontend/         # React frontend application
-├── mobile/          # React Native mobile app
-├── docs/            # Documentation
-├── config/          # Configuration files
-├── scripts/         # Utility scripts
-└── tests/           # Test suites
-```
-
-## Documentation
-Detailed documentation is available in the `docs/` directory:
-- [Setup Guide](docs/SetupGuide.md)
-- [Biosurveillance Features](docs/BiosurveillanceGuide.md)
-- [Advanced Features](docs/AdvancedFeatures.md)
+5. Access the platform at `http://127.0.0.1:5000`.
 
 ## Testing
-Run the test suites:
-```bash
-# Backend tests
-cd backend
-npm test
+1. Ensure the database is set up as described above.
+2. Run the test suite:
+   ```bash
+   pytest test_biohub.py
+   ```
 
-# Frontend tests
-cd frontend
-npm test
-```
-
-## Security
-For security concerns, please see our [Security Policy](SECURITY.md).
+## Contribution Guidelines
+1. Fork the repository and create a new branch for your feature/bugfix.
+2. Submit a pull request with detailed comments and test results.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
