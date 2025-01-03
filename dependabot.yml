@@ -1,0 +1,137 @@
+
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directories:
+      - "/updater"
+      - "/"
+    schedule:
+      interval: "daily"
+    groups:
+      sorbet:
+        patterns:
+          - "*-sorbet"
+          - "sorbet-*"
+          - "sorbet"
+          - "tapioca"
+      aws-sdk:
+        patterns:
+          - "aws-sdk-*"
+      prod-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "composer"
+    directories:
+      - "/composer/helpers/v2"
+    schedule:
+      interval: "daily"
+    groups:
+      prod-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directories:
+      - "/"
+      - "/go_modules"
+      - "/cargo"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      all-actions:
+        patterns: [ "*" ]
+  - package-ecosystem: "gomod"
+    directory: "/go_modules/helpers"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "mix"
+    directory: "/hex/helpers"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/npm_and_yarn/helpers"
+    schedule:
+      interval: "daily"
+    groups:
+      npm-dependencies:
+        patterns:
+          - "@npmcli/arborist"
+          - "nock"
+          - "npm"
+          - "semver"
+        exclude-patterns:
+          - "detect-indent"
+      yarn-dependencies:
+        patterns:
+          - "@dependabot/yarn-lib"
+      pnpm-dependencies:
+        patterns:
+          - "@pnpm/lockfile-file"
+          - "@pnpm/dependency-path"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      - dependency-name: "npm"
+        update-types: [ "version-update:semver-major" ]
+  - package-ecosystem: "pip"
+    directory: "/python/helpers"
+    schedule:
+      interval: "daily"
+    groups:
+      common:
+        patterns:
+          - pip
+          - cython
+          - flake8
+      poetry:
+        patterns:
+          - poetry
+          - hashin
+      pip-tools:
+        patterns:
+          - pip-tools
+      pipenv:
+        patterns:
+          - pipfile
+          - pipenv
+  - package-ecosystem: "pub"
+    directory: "/pub/helpers"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/nuget/helpers/lib/NuGetUpdater"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "dotnet-sdk"
+    directory: "/nuget/helpers/lib/NuGetUpdater"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "daily"
