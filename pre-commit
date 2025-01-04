@@ -1,0 +1,19 @@
+
+#!/bin/sh
+echo "Running pre-commit checks..."
+
+# Run tests
+python -m pytest tests/
+if [ $? -ne 0 ]; then
+    echo "Tests failed. Commit aborted."
+    exit 1
+fi
+
+# Check code formatting
+python -m black . --check
+if [ $? -ne 0 ]; then
+    echo "Code formatting check failed. Run 'black .' to format code."
+    exit 1
+fi
+
+exit 0
