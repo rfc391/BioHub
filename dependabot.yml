@@ -1,3 +1,4 @@
+
 version: 2
 updates:
   - package-ecosystem: "bundler"
@@ -6,7 +7,6 @@ updates:
       - "/"
     schedule:
       interval: "daily"
-      time: "16:00"
     groups:
       sorbet:
         patterns:
@@ -28,13 +28,11 @@ updates:
           - "minor"
           - "patch"
 
-  # Watch the per-ecosystem native helpers
   - package-ecosystem: "composer"
     directories:
       - "/composer/helpers/v2"
     schedule:
       interval: "daily"
-      time: "16:00"
     groups:
       prod-dependencies:
         dependency-type: "production"
@@ -50,7 +48,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "docker"
     directories:
       - "/"
@@ -58,12 +55,10 @@ updates:
       - "/cargo"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-      time: "16:00"
     groups:
       all-actions:
         patterns: [ "*" ]
@@ -71,17 +66,14 @@ updates:
     directory: "/go_modules/helpers"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "mix"
     directory: "/hex/helpers"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "npm"
     directory: "/npm_and_yarn/helpers"
     schedule:
       interval: "daily"
-      time: "16:00"
     groups:
       npm-dependencies:
         patterns:
@@ -90,7 +82,7 @@ updates:
           - "npm"
           - "semver"
         exclude-patterns:
-          - "detect-indent"  # temp excluded due to https://github.com/dependabot/dependabot-core/pull/5683#issuecomment-1243468605
+          - "detect-indent"
       yarn-dependencies:
         patterns:
           - "@dependabot/yarn-lib"
@@ -110,7 +102,6 @@ updates:
     directory: "/python/helpers"
     schedule:
       interval: "daily"
-      time: "16:00"
     groups:
       common:
         patterns:
@@ -132,19 +123,15 @@ updates:
     directory: "/pub/helpers"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "nuget"
     directory: "/nuget/helpers/lib/NuGetUpdater"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "dotnet-sdk"
     directory: "/nuget/helpers/lib/NuGetUpdater"
     schedule:
       interval: "daily"
-      time: "16:00"
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
       interval: "daily"
-      time: "16:00"

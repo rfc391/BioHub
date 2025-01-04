@@ -1,8 +1,8 @@
 
-application:
+app:
   name: project_name
   version: 0.1.0
   
-settings:
-  debug: true
-  log_level: INFO
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'

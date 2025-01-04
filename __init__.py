@@ -1,1 +1,2 @@
-# Initialize utils package
+
+"""Test package initialization."""
