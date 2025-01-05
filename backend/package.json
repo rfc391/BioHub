@@ -1,16 +1,16 @@
 {
-  "name": "biodefense-hub-platform",
-  "version": "1.0.0",
-  "description": "Biodefense Hub backend platform",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "helmet": "^6.0.0",
-    "body-parser": "^1.20.1",
-    "cors": "^2.8.5"
-  }
+    "name": "biohub-frontend",
+    "version": "1.0.0",
+    "description": "Frontend for BioHub",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-scripts": "^5.0.1"
+    }
 }

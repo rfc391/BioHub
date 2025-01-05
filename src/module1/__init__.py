@@ -1,2 +1,0 @@
-
-"""Module1 initialization."""
