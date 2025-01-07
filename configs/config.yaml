@@ -1,8 +1,0 @@
-
-app:
-  name: project_name
-  version: 0.1.0
-  
-logging:
-  level: INFO
-  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'

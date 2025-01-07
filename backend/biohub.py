@@ -1,11 +1,11 @@
 
 import sqlite3
 from flask import Flask, jsonify, request
-from backend.routes.biosafety_routes import biosafety_bp
-from backend.routes.biostasis_routes import biostasis_bp
-from backend.routes.iot_routes import iot_bp
-from backend.routes.outbreaks_routes import outbreaks_bp
-from backend.routes.incidents_routes import incidents_bp
+from BioHub.backend.routes.biosafety_routes import biosafety_bp
+from BioHub.backend.routes.biostasis_routes import biostasis_bp
+from BioHub.backend.routes.iot_routes import iot_bp
+from BioHub.backend.routes.outbreaks_routes import outbreaks_bp
+from BioHub.backend.routes.incidents_routes import incidents_bp
 
 app = Flask(__name__)
 
