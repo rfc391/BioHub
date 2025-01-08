@@ -1,6 +1,6 @@
 
 import unittest
-from BioHub.backend.biohub import app
+from backend.biohub import app
 
 class TestBioHub(unittest.TestCase):
     def test_app_exists(self):
@@ -8,4 +8,3 @@ class TestBioHub(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    
