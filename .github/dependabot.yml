@@ -13,8 +13,6 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
-    automerge: true
-    automerge-strategy: "merge"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -29,8 +27,6 @@ updates:
     labels:
       - "dependencies"
       - "python"
-    automerge: true
-    automerge-strategy: "merge"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -45,8 +41,6 @@ updates:
     labels:
       - "dependencies"
       - "npm"
-    automerge: true
-    automerge-strategy: "squash"
 
   - package-ecosystem: "docker"
     directory: "/"
@@ -61,4 +55,3 @@ updates:
     labels:
       - "dependencies"
       - "docker"
-    automerge: false
