@@ -1,4 +1,3 @@
-
 import cv2
 from xaitk_saliency.impls.gen_image.saliency_scorer import SaliencyScorer
 
