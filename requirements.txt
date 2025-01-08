@@ -25,5 +25,5 @@ openai
 
 grpcio
 grpcio-tools
-opencv-python==4.5.5.64
+opencv-python==4.8.1.78
 xaitk-saliency==0.5.0
