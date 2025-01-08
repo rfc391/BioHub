@@ -1,4 +1,11 @@
 import cv2
+from xaitk_saliency import SaliencyScorer  # Ensure this import works
+
+def explain_with_xaitk(edges):
+    # Example replacement or ensure SaliencyScorer is implemented
+    scorer = SaliencyScorer()  # Or replace with the correct scorer
+    explanation = scorer.score(edges)
+    return explanation
 
 def process_image_with_opencv(image_path):
     # Load an image using OpenCV
@@ -11,11 +18,10 @@ def process_image_with_opencv(image_path):
     edges = cv2.Canny(gray_image, 100, 200)
     return edges
 
-def explain_with_xaitk(image):
-    # Use XAITK to create a dummy saliency explanation
-    scorer = SaliencyScorer()
-    saliency = scorer.infer(image)
-    return saliency
+def test_saliency_scorer():
+    edges = ...  # Mock edge data
+    explanation = explain_with_xaitk(edges)
+    assert explanation is not None
 
 def main():
     image_path = "assets/sample_image.jpg"  # Replace with your test image
