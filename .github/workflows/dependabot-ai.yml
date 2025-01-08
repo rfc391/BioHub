@@ -57,10 +57,15 @@ jobs:
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
-        curl -s https://api.openai.com/v1/chat/completions \
-          -H "Content-Type: application/json" \
-          -H "Authorization: Bearer $OPENAI_API_KEY" \
-          -d '{
+        import OpenAI from "openai";
+const openai = new OpenAI();
+const completion = await openai.chat.completions.create({
+    model: "gpt-4o",
+    store: true,
+    messages: [
+        {"role": "user", "content": "write a haiku about ai"}
+    ]
+});
             "model": "gpt-4",
             "messages": [{"role": "system", "content": "Review the pull request."},
                          {"role": "user", "content": "'"${{ github.event.pull_request.diff_url }}"'"}]
