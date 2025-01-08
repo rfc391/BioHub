@@ -28,13 +28,13 @@ jobs:
         run: |
           echo "Building project..."
 
-      - - name: Initialize CodeQL
-  uses: github/codeql-action/init@v2
-  with:
-    languages: python  # Adjust this for your project if needed
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python  # Adjust this for your project if needed
 
-- name: Perform CodeQL Analysis
-  uses: github/codeql-action/analyze@v2
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
 
       - name: Generate Test Cases with OpenAI
         run: |
