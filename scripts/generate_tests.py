@@ -12,7 +12,7 @@ response = openai.ChatCompletion.create(
         {"role": "user", "content": f"Generate test cases for the following code:\n{code}"}
     ]
 )
-        engine="text-davinci-003",
+        engine="gpt-4-turbo",
         prompt=prompt,
         max_tokens=150
     )
