@@ -23,5 +23,5 @@ requests
 psutil
 grpcio
 grpcio-tools
-opencv-python==4.8.1.78
-xaitk-saliency==0.5.0
+opencv-python
+xaitk-saliency
