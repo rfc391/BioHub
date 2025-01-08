@@ -17,8 +17,7 @@ response = openai.ChatCompletion.create(
         max_tokens=150
     )
 response['choices'][0]['message']['content']
-
-# Example usage
+    # Example usage
 with open("your_code.py", "r") as file:
     code = file.read()
 print(generate_test_cases(code))
