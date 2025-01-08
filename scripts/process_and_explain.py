@@ -11,22 +11,12 @@ def process_image_with_opencv(image_path):
     edges = cv2.Canny(gray_image, 100, 200)
     return edges
 
-def explain_with_xaitk(image):
-    # Use XAITK to create a dummy saliency explanation
-    scorer = SaliencyScorer()
-    saliency = scorer.infer(image)
-    return saliency
-
 def main():
     image_path = "assets/sample_image.jpg"  # Replace with your test image
     print("Processing image with OpenCV...")
     edges = process_image_with_opencv(image_path)
     cv2.imwrite("assets/edges_output.jpg", edges)
     print("Edges saved as 'assets/edges_output.jpg'")
-
-    print("Explaining decisions with XAITK...")
-    explanation = explain_with_xaitk(edges)
-    print("Saliency Explanation:", explanation)
 
 if __name__ == "__main__":
     main()
