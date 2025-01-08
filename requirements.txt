@@ -21,7 +21,6 @@ python-dotenv
 pyyaml
 requests
 psutil
-python-openai
 openai
 
 grpcio
