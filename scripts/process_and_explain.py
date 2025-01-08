@@ -1,5 +1,5 @@
 import cv2
-from xaitk_saliency.impls.image_scoring import SaliencyScorer
+from xaitk_saliency.impls.perturb_image.mc_rise.MCRISEGrid import SaliencyScorer
 
 def process_image_with_opencv(image_path):
     # Load an image using OpenCV
