@@ -21,8 +21,6 @@ python-dotenv
 pyyaml
 requests
 psutil
-openai
-
 grpcio
 grpcio-tools
 opencv-python==4.8.1.78
