@@ -49,3 +49,9 @@ jobs:
         run: |
           # Add deployment commands here
           echo "Deploying project..."
+
+- name: Generate Test Cases with OpenAI
+  run: |
+    python scripts/generate_tests.py
+  env:
+    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
