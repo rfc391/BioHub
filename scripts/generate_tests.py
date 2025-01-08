@@ -14,8 +14,10 @@ def generate_test_cases(code_snippet):
 
 # Example usage
 import os
-if not os.path.exists("your_code.py"):
-    raise FileNotFoundError("The required file 'your_code.py' does not exist.")
-with open("your_code.py", "r") as file:
+script_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(script_dir, "your_code.py")
+if not os.path.exists(file_path):
+    raise FileNotFoundError(f"The required file '{file_path}' does not exist.")
+with open(file_path, "r") as file:
     code = file.read()
 print(generate_test_cases(code))
