@@ -17,7 +17,6 @@ jobs:
 
       - name: Set Up Dependencies
         run: |
-          # Example for Python
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -27,7 +26,6 @@ jobs:
 
       - name: Build Project
         run: |
-          # Add your build commands here
           echo "Building project..."
 
       - name: Run AI Code Analysis
@@ -38,7 +36,9 @@ jobs:
       - name: Generate Test Cases with OpenAI
         run: |
           python -m pip install openai
-          python scripts/generate_tests.py  # Use a script to auto-generate tests
+          python scripts/generate_tests.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Run AI Simulations
         run: |
@@ -47,11 +47,4 @@ jobs:
       - name: Deploy Project
         if: success()
         run: |
-          # Add deployment commands here
           echo "Deploying project..."
-
-- name: Generate Test Cases with OpenAI
-  run: |
-    python scripts/generate_tests.py
-  env:
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
