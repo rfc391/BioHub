@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "Building project..."
 
-      - - name: Initialize CodeQL
+      - name: Initialize CodeQL
   uses: github/codeql-action/init@v2
   with:
     languages: python  # Adjust this for your project if needed
