@@ -22,3 +22,6 @@ python-dotenv
 pyyaml
 requests
 psutil
+
+grpcio
+grpcio-tools
