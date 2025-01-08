@@ -1,4 +1,4 @@
-name: CI Pipeline
+ name: CI Pipeline
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
   with:
     languages: python  # Adjust this for your project if needed
 
--name: Perform CodeQL Analysis
+      - name: Perform CodeQL Analysis
   uses: github/codeql-action/analyze@v2
 
       - name: Generate Test Cases with OpenAI
