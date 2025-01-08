@@ -1,5 +1,4 @@
 import cv2
-from xaitk_saliency import SaliencyScorer  # Ensure this import works
 
 def explain_with_xaitk(edges):
     # Example replacement or ensure SaliencyScorer is implemented
