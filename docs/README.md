@@ -1,6 +1,8 @@
 # BioHub Project Documentation
 
 ## Overview
+BioHub redefines biosafety and biostasis management with its scalable, professional-grade platform. From IoT monitoring and outbreak surveillance to incident reporting, BioHub is at the forefront of biodefense innovation.
+
 The BioHub Project combines a user-friendly Flask dashboard with a robust gRPC backend to provide seamless data access and management. The system ensures real-time user data retrieval and a secure, efficient backend powered by immudb, an immutable database.
 
 ---
