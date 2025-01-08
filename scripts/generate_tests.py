@@ -13,6 +13,9 @@ def generate_test_cases(code_snippet):
     return response['choices'][0]['text']
 
 # Example usage
+import os
+if not os.path.exists("your_code.py"):
+    raise FileNotFoundError("The required file 'your_code.py' does not exist.")
 with open("your_code.py", "r") as file:
     code = file.read()
 print(generate_test_cases(code))
