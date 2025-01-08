@@ -61,7 +61,7 @@ jobs:
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer $OPENAI_API_KEY" \
           -d '{
-            "model": "gpt-4",
+            "model": "gpt-4o",
             "messages": [
               {"role": "system", "content": "You are a helpful code reviewer AI."},
               {"role": "user", "content": "Please review the pull request at this diff URL: ${{ github.event.pull_request.diff_url }}"}
