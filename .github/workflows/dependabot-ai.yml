@@ -18,24 +18,24 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup Python (for pip dependencies)
-      if: ${{ github.event.pull_request.head.ref == '[Python]' }}
+      if: contains(github.event.pull_request.head.ref, '[Python]')
       uses: actions/setup-python@v4
       with:
         python-version: 3.9
 
     - name: Install Python dependencies
-      if: ${{ github.event.pull_request.head.ref == '[Python]' }}
+      if: contains(github.event.pull_request.head.ref, '[Python]')
       run: |
         pip install -r requirements.txt
 
     - name: Setup Node.js (for npm dependencies)
-      if: ${{ github.event.pull_request.head.ref == '[NPM]' }}
+      if: contains(github.event.pull_request.head.ref, '[NPM]')
       uses: actions/setup-node@v3
       with:
         node-version: '16'
 
     - name: Install npm dependencies
-      if: ${{ github.event.pull_request.head.ref == '[NPM]' }}
+      if: contains(github.event.pull_request.head.ref, '[NPM]')
       run: npm install
 
     - name: Test code
@@ -57,16 +57,13 @@ jobs:
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
-        import OpenAI from "openai";
-const openai = new OpenAI();
-const completion = await openai.chat.completions.create({
-    model: "gpt-4o",
-    store: true,
-    messages: [
-        {"role": "user", "content": "write a haiku about ai"}
-    ]
-});
+        curl -s https://api.openai.com/v1/chat/completions \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer $OPENAI_API_KEY" \
+          -d '{
             "model": "gpt-4",
-            "messages": [{"role": "system", "content": "Review the pull request."},
-                         {"role": "user", "content": "'"${{ github.event.pull_request.diff_url }}"'"}]
+            "messages": [
+              {"role": "system", "content": "You are a helpful code reviewer AI."},
+              {"role": "user", "content": "Please review the pull request at this diff URL: ${{ github.event.pull_request.diff_url }}"}
+            ]
           }' | tee ai-review-response.txt
