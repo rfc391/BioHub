@@ -63,10 +63,3 @@ jobs:
       run: |
         echo "Deploying model to production..."
         python scripts/deploy_model.py
-
-    - name: Notify Team
-      uses: rtCamp/action-slack-notify@v2
-      with:
-        webhook: ${{ secrets.SLACK_WEBHOOK }}
-        message: "Workflow completed successfully!"
-        
