@@ -13,8 +13,6 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
-    post-update-commands:
-      - run: gh workflow run "CI/CD Workflow with OpenCV AI"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -29,8 +27,6 @@ updates:
     labels:
       - "dependencies"
       - "python"
-    post-update-commands:
-      - run: pip-audit
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -45,8 +41,6 @@ updates:
     labels:
       - "dependencies"
       - "npm"
-    post-update-commands:
-      - run: npm audit
 
   - package-ecosystem: "docker"
     directory: "/"
