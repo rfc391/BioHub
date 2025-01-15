@@ -15,7 +15,4 @@ pyyaml==6.0.1
 requests
 shap
 xaitk-saliency
-
 # Dependencies for gRPC
-grpcio
-grpcio-tools
