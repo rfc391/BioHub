@@ -1,5 +1,3 @@
-
-from backend.biohub import app
-
+# Main entry point for the project.
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    print("This is a placeholder for the main script.")
