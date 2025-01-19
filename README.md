@@ -1,73 +1,68 @@
 
-# BioHub
+# BioHub Project
 
-BioHub is an innovative platform designed to revolutionize biotechnology and biomanufacturing by integrating cutting-edge technologies like Quantum Key Distribution (QKD), Post-Quantum Cryptography (PQC), and real-time data analysis. This project adheres to DARPA standards, ISO guidelines, and open-source principles for maximum compatibility, security, and ease of use.
+## Overview
+BioHub is an advanced, modular platform designed for biotechnology, bioinformatics, biodefense, and agriculture. It adheres to international standards (ISO, IET, IEEE) for security, reliability, and interoperability.
 
 ## Key Features
-- **OpenCV AI Integration**: Advanced AI-powered visual processing for biotechnology.
-- **gRPC with Protoc**: Enables seamless, high-performance communication between distributed systems.
-- **Cloudflare Zero Trust Integration**: Ensures secure infrastructure with D1 and D2 databases.
-- **Quiche Support**: Implements robust HTTP/3 and QUIC protocols.
-- **Quantum-Secure Architecture**: Incorporates QKD and PQC for future-proof security.
-- **User-Friendly Framework**: Intuitive design for developers and researchers.
-- **DARPA and ISO Compliant**: Meets strict security and interoperability standards.
+1. **Global Database Integration**:
+   - Includes FAOSTAT, AGRIS, NCBI, GBIF, and GSAP databases.
+   - Mock handlers simulate global database responses for testing in restricted environments.
+2. **AI-Driven Automation**:
+   - Automated deployment, testing, and log monitoring.
+3. **Advanced Security**:
+   - SHA-256 hashing, HMAC signatures, and symmetric encryption with key persistence.
+4. **Agricultural Tools**:
+   - Crop health monitoring and yield prediction tools.
+5. **Compliance**:
+   - ISO/IEC 27001: Information Security Management.
+   - ISO/IEC 90003: Software Engineering - Quality Management Systems.
+   - IEEE 12207: Software Lifecycle Processes.
+   - IEEE 29119: Software Testing Standards.
+   - W3C Accessibility Standards.
 
-## Prerequisites
-- Python 3.8+
-- pip (Python package installer)
-- Docker (optional for containerized deployment)
+## APIs
+### Security Module
+1. **Hash Data**:
+   - Endpoint: `POST /api/security/hash`
+   - Payload: `{ "data": "string" }`
+   - Response: `{ "hashed_data": "hashed_string" }`
 
-## Setup Instructions
-1. Clone the repository:
+2. **Encrypt Data**:
+   - Endpoint: `POST /api/security/encrypt`
+   - Payload: `{ "data": "string" }`
+   - Response: `{ "encrypted_data": "encrypted_string" }`
+
+3. **Decrypt Data**:
+   - Endpoint: `POST /api/security/decrypt`
+   - Payload: `{ "encrypted_data": "string" }`
+   - Response: `{ "decrypted_data": "original_string" }`
+
+## Installation
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/rfc391/BioHub.git
-   cd BioHub
+   git clone <repository_url>
+   cd BioHub-main
    ```
-2. Install dependencies:
+
+2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
-3. Configure environment variables:
-   - Copy the `.env.example` file to `.env`:
-     ```bash
-     cp .env.example .env
-     ```
-   - Update the `.env` file with your Cloudflare credentials and other required configurations.
 
-4. Start the application:
+3. **Run the Application**:
    ```bash
    python main.py
    ```
 
-## Deployment with Docker
-1. Build the Docker image:
-   ```bash
-   docker build -t biohub .
-   ```
-2. Run the container:
-   ```bash
-   docker run -d -p 8000:8000 --env-file .env biohub
-   ```
+4. **Access the Dashboard**:
+   Open your browser and navigate to `http://localhost:8081`.
 
-## Usage
-### Frontend
-- Navigate to `frontend/` and run:
-  ```bash
-  flutter run
-  ```
-
-### Backend
-- The backend server runs on `http://localhost:8000` by default.
-
-## Contributions
-Contributions are welcome! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature/bugfix.
-3. Submit a pull request for review.
+## Standards Compliance
+1. **ISO/IEC 27001**: Ensures robust information security management.
+2. **ISO/IEC 90003**: Aligns with quality management systems for software engineering.
+3. **IEEE 12207**: Covers software lifecycle processes for development, operation, and maintenance.
+4. **IEEE 29119**: Implements comprehensive software testing protocols.
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-## Acknowledgments
-- Heartland BioWorks for collaboration and insights.
-- Cloudflare for secure infrastructure tools.
+This project is licensed under the MIT License.

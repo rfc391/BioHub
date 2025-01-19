@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioHub Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 1em;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em;
+            flex: 1 1 calc(30% - 2em);
+            max-width: calc(30% - 2em);
+            min-width: 250px;
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card p {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BioHub Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="card" id="global-data-card">
+            <h2>Global Database Data</h2>
+            <p id="global-data-message">Fetching data...</p>
+        </div>
+    </div>
+
+    <script>
+        // Fetch data from global database API
+        async function fetchGlobalData() {
+            try {
+                const response = await fetch("/api/global-data/FAOSTAT?endpoint=production&area=world");
+                const data = await response.json();
+                const messageElement = document.getElementById("global-data-message");
+                if (data.status === "success") {
+                    messageElement.innerText = "Data fetched successfully. Check console for details.";
+                    console.log("Global Database Data:", data.data);
+                } else {
+                    messageElement.innerText = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                document.getElementById("global-data-message").innerText = "Error fetching global database data.";
+            }
+        }
+
+        // Fetch data on page load
+        window.onload = fetchGlobalData;
+    </script>
+</body>
+</html>
