@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioHub Agriculture Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 1em;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em;
+            flex: 1 1 calc(30% - 2em);
+            max-width: calc(30% - 2em);
+            min-width: 250px;
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card p {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BioHub Agriculture Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="card" id="crop-health-card">
+            <h2>Crop Health</h2>
+            <p id="crop-health-message">Fetching crop health data...</p>
+        </div>
+        <div class="card" id="yield-prediction-card">
+            <h2>Yield Prediction</h2>
+            <p id="yield-prediction-message">Calculating yield predictions...</p>
+        </div>
+    </div>
+
+    <script>
+        // Fetch crop health data
+        async function fetchCropHealth() {
+            try {
+                const response = await fetch("/api/global-data/FAOSTAT?endpoint=crop_health&area=world");
+                const data = await response.json();
+                const messageElement = document.getElementById("crop-health-message");
+                if (data.status === "success") {
+                    messageElement.innerText = "Crop health data fetched successfully. Check console for details.";
+                    console.log("Crop Health Data:", data.data);
+                } else {
+                    messageElement.innerText = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                document.getElementById("crop-health-message").innerText = "Error fetching crop health data.";
+            }
+        }
+
+        // Fetch yield prediction data
+        async function fetchYieldPrediction() {
+            try {
+                const response = await fetch("/api/global-data/FAOSTAT?endpoint=yield_prediction&area=world");
+                const data = await response.json();
+                const messageElement = document.getElementById("yield-prediction-message");
+                if (data.status === "success") {
+                    messageElement.innerText = "Yield prediction data fetched successfully. Check console for details.";
+                    console.log("Yield Prediction Data:", data.data);
+                } else {
+                    messageElement.innerText = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                document.getElementById("yield-prediction-message").innerText = "Error fetching yield prediction data.";
+            }
+        }
+
+        // Fetch data on page load
+        window.onload = () => {
+            fetchCropHealth();
+            fetchYieldPrediction();
+        };
+    </script>
+</body>
+</html>
